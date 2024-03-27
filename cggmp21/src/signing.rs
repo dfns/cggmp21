@@ -1101,6 +1101,7 @@ where
         .await
         .map_err(IoError::send_message)?;
     tracer.msg_sent();
+    runtime.yield_now().await;
 
     // Output
     tracer.named_round_begins("Signature reconstruction");
